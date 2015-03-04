@@ -1,0 +1,86 @@
+import javax.swing.*;
+import java.awt.*;
+import java.io.*;
+
+class DisplayPanel extends JPanel
+{
+   ImageIcon image;
+   JLabel label2;
+   public DisplayPanel( )
+   {
+      image = new ImageIcon(getClass().getResource("ocean.jpg"));
+      label2 = new JLabel(image);
+      this.add(label2);
+   }
+   public void paint(Graphics g)
+   {
+
+      int x = 600;  //width of frame or panel image
+      int y = 400;
+      for( int j=0; j<x; j+=x/10)
+      {
+         g.setColor(new Color(128, 128, 255));
+         g.drawLine(j, 0, j, 400); 
+      }
+      for( int j=0; j<y;j+=y/10)
+      {
+         g.setColor(new Color(128, 128, 255));
+         g.drawLine(0, j, 600, j); 
+      }
+   }
+}
+
+public class Board
+{
+   public JFrame frame;
+   public JPanel panel;
+   public DisplayPanel panel2;
+   public JLabel label;
+   public JLabel label2;
+   public JButton button;
+   public JCheckBox chbox;
+   public ImageIcon image;
+   
+   
+   public boolean init()
+   {
+      frame = new JFrame("BattleShip");
+      frame.setSize(600, 400);
+      //frame.setBackground(Color.BLUE);
+      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+           
+      panel = new JPanel();
+      panel2 = new DisplayPanel();      
+      panel.setBackground(Color.BLUE);
+      panel2.setBackground(Color.BLUE);
+      
+      label = new JLabel("WELCOME TO BATTLESHIP, Soldier!");
+      
+      button = new JButton("Exit Game");
+      
+      chbox = new JCheckBox("Toggle Music");
+      
+      frame.add(panel, BorderLayout.SOUTH);
+      panel.add(label);
+      panel.add(button);
+      
+      frame.add(panel2);
+      //panel2.add(chbox);
+      
+      
+      
+      frame.show();
+      Graphics g = panel2.getGraphics();     
+      g.setColor(Color.BLACK);
+      g.drawLine(0,0,100,100);
+      panel2.repaint();
+      
+      frame.repaint();
+      return true;
+   }
+   
+   public void music()
+   {
+   
+   }
+}
